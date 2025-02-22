@@ -16,4 +16,4 @@ class JournalEntry(models.Model):
     time_stamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.mood} ({self.time_stamp})"
+        return f"{self.user.username} - {self.mood} ({self.timestamp})"
