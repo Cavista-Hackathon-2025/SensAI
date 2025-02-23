@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Account | Sensai</title>
+
+    <!-- Boostrap CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="/css/onboarding.css">
+
+    <!-- Favicon Link -->
+    <link rel="shortcut icon" href="/cdn/images/favicon.png" type="image/x-icon">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <div class="logo-icon">
+            <img src="/cdn/images/Sensai.png">
+        </div>
+        <span>
+            <a href="/index.html">Sensai</a>
+        </span>
+    </div>
+
+    <button class="get-started">
+        <a href="/login.html">Log In</a>
+    </button>
+</header>
+
+<main>
+    <div class="w-full">
+        <div class="h1-center">
+            <h2>Welcome to Sensai</h2>
+        </div>
+
+        <form id="registerForm" onsubmit="handleSubmit(event)">
+            <!-- Google Login -->
+            <button class="google-link" type="button" onclick="handleGoogleLogin()">
+                <img src="/cdn/images/google-logo.png" alt="Google Logo">
+                <span>
+                    <a href="">Continue with Google</a>
+                </span>
+            </button>
+
+            <div class="inputs">
+                <div class="name-input">
+                    <label for="name">Name</label>
+                    <div class="icon-input">
+                        <div class="icon"></div>
+                        <input 
+                        type="text" 
+                        id="name"
+                        name="name"
+                        required
+                        placeholder="John Doe">
+                    </div>
+                </div>
+
+                <div class="email-input">
+                    <label for="email">Email</label>
+                    <div class="icon-input">
+                        <div class="icon"></div>
+                        <input 
+                        type="email" 
+                        id="email"
+                        name="email"
+                        required
+                        placeholder="youremail@mail.com">
+                    </div>
+                </div>
+    
+                <div class="Password-input">
+                    <label for="password">Password</label>
+                    <div class="icon-input">
+                        <div class="icon"></div>
+                        <input 
+                        type="password" 
+                        id="password" 
+                        name="password"
+                        required
+                        placeholder="Choose Password">
+                    </div>
+                </div>
+
+                <div class="Password-input">
+                    <label for="confirmPassword">Re-enter Password</label>
+                    <div class="icon-input">
+                        <div class="icon"></div>
+                        <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword"
+                        required
+                        placeholder="Re-enter Password">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button 
+                type="submit"
+                class="rounded-button">
+                    Create Account
+                </button>
+            </div>
+        </form>
+
+        <p class="b-text">
+            Already have an account?
+            <button class="next-link">
+                <a href="/login.html">
+                    Log in
+                </a>
+            </button>
+        </p>
+    </div>
+</main>
+
+<footer>
+    <div class="whole">
+        <div class="text">
+            Made with <span>🤍</span> by SensAI &copy; 2025. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<script src="/js/onboarding.js"></script>
+<script>
+    // Form validation and submit handling
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Validate that passwords match
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        // Check if email is valid
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        // Send the data to your backend to register the new user
+        const userData = { name, email, password };
+
+        // Assuming you have an API endpoint `/api/register` to handle user registration
+        fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Redirect to login page after successful registration
+                window.location.href = '/login.html';
+            } else {
+                alert("Error registering user: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        });
+    }
+
+    // Placeholder Google Login Handler
+    function handleGoogleLogin() {
+        alert("Google login is not implemented in this demo.");
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+@import url("/css/variable.css");
+
+header {
+    width: 100vw;
+    height: 4rem;
+    backdrop-filter: blur(20px);
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 15%;
+}
+
+.logo {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo span a {
+    color: var(--white);
+    font-family: cursive;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+
+.logo .logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 60% 40% 59% 41% / 40% 57% 43% 60%;
+    filter: drop-shadow(0 0px 2px #0000006c);
+}
+
+.logo .logo-icon img {
+    width: 30px;
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+}
+
+.navlinks {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5rem;
+}
+
+.navlinks ul {
+    list-style: none;
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.navlinks ul li a {
+    font-size: .8px;
+    color: var(--white);
+}
+
+.navlinks ul li .active {
+    color: var(--accent-color);
+}
+
+header .get-started {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    padding: .8rem 1.4rem;
+    border-radius: 50px;
+    color: var(--white);
+    background: var(--accent-color);
+    font-family: 'Montserrat';
+    font-size: .8rem;
+    letter-spacing: .5px;
+    font-weight: 500;
+}
+
+header .get-started a {
+    color: var(--white);
+}
+
+#about {
+    width: 100vw;
+    min-height: 70vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0 0 0;
+}
+
+.label {
+    padding: .5rem .8rem;
+    border: .1rem solid rgba(11, 124, 158, 0.5);
+    border-radius: 50px;
+    text-transform: lowercase;
+    font-weight: 600;
+    color: rgba(11, 124, 158, 0.8);
+    /* z-index: 1000000; */
+    /* margin-bottom: 2rem; */
+}
+
+.about-part {
+    width: 100vw;
+    min-height: 60vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-gap: 2rem;
+    padding: 0 15% 0 10%;
+}
+
+.about-part .about-text {
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+    justify-content: center;
+    position: relative;
+    gap: 2rem;
+}
+
+.about-part .about-text h4 {
+    text-align: left;
+    /* width: 100%; */
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: .7px;
+}
+
+.about-part .about-text h4 span {
+    font-size: 1.8rem;
+    color: var(--second-color);
+}
+
+.about-part .about-text a {
+    text-decoration: none;
+    background-color: var(--second-color);
+    color: var(--white);
+    padding: .7rem 1.5rem;
+    border-radius: 50px;
+}
+
+.about-part .about-svg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.about-part .about-svg img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    object-fit: cover;
+    object-position: center;
+    filter: hue-rotate(320deg);
+}
+
+.ad {
+    width: 100vw;
+    height: 4rem;
+    background-color: var(--white);
+    padding: 0 10rem;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    position: relative;
+    filter: drop-shadow(0px 0px 2px #0000001c);
+    margin-bottom: 2rem;
+}
+
+.ad .logo-text {
+    position: relative;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-right: 2rem;
+    border-right: .1rem solid var(--grey);
+}
+
+.ad .ad-caption {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: .7px;
+    text-transform: capitalize;
+}
