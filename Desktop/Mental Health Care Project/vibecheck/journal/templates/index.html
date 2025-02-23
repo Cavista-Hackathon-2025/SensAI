@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal Mood Checker</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 40px;
+        background: #f4f4f4;
+      }
+      h2 {
+        color: #333;
+      }
+      textarea {
+        width: 90%;
+        max-width: 600px;
+        height: 120px;
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+      }
+      button {
+        padding: 12px 20px;
+        font-size: 16px;
+        color: white;
+        background: #007bff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Journal Mood Checker</h2>
+    <textarea
+      id="textInput"
+      placeholder="Write your journal entry here..."
+    ></textarea
+    ><br />
+    <button onclick="submitJournal()">Analyze Mood</button>
+    <p id="result"></p>
+
+    <script>
+      const API_BASE_URL = "http://127.0.0.1:8000/api"; // Change this if your backend is hosted elsewhere
+      const accessToken =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQwODg0NzU0LCJpYXQiOjE3NDAyNzk5NTQsImp0aSI6Ijg2YWY2NzNiMGE3NTQxOWM5ODkzZmYyMmJlMTQwYWM4IiwidXNlcl9pZCI6MX0.XJj5avGJZ-1LAzluNLAsWYPJqGXACHJISrkusva9qB0";
+
+      async function submitJournal() {
+        const text = document.getElementById("textInput").value.trim();
+
+        if (!text) {
+          document.getElementById("result").innerText =
+            "Please enter some text.";
+          return;
+        }
+
+        document.getElementById("result").innerText = "Analyzing mood...";
+
+        try {
+          const response = await fetch(`${API_BASE_URL}/journals/`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify({ text: text }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.mood) {
+            document.getElementById("result").innerText = "Mood: " + data.mood;
+          } else {
+            document.getElementById("result").innerText =
+              data.detail || "Error analyzing mood.";
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          document.getElementById("result").innerText =
+            "An error occurred. Please try again.";
+        }
+      }
+    </script>
+  </body>
+</html>
